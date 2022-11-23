@@ -1,0 +1,20 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: bind
+spec:
+  version: v0.3.0
+  platforms:
+    - bin: bin/kubectl-bind
+      uri: https://github.com/pkbhowmick/kube-bind/releases/download/v0.3.0/kubectl-bind_0.3.0_linux_amd64.tar.gz
+      sha256: e06370067892dab8d9ee1bc16b38f568a4b038086c47cbf395e131b6e1089783
+      selector:
+        matchLabels:
+          os: linux
+          arch: amd64
+  shortDescription: Bind API services and other remote types into the current cluster.
+  homepage: https://kubectl-bind.io/
+  description: |
+    Binds API services and other remote types into the current cluster. API services
+    are CRDs that are operated by a service provider without anything by that service
+    provider running in the local cluster. Real SaaS for Kubernetes.

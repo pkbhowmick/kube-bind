@@ -18,8 +18,6 @@ package cmd
 
 import (
 	"fmt"
-	"strings"
-
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 
@@ -56,10 +54,12 @@ func New(streams genericclioptions.IOStreams) (*cobra.Command, error) {
 		Example:      fmt.Sprintf(bindExampleUses, "kubectl"),
 		SilenceUsage: true,
 		Args: func(cmd *cobra.Command, args []string) error {
+			fmt.Println("Argument list: ")
 			for _, arg := range args {
-				if !strings.HasPrefix(arg, "http://") && !strings.HasPrefix(arg, "https://") {
-					return fmt.Errorf("unknown argument: %s", arg) // this will fall back to sub-commands
-				}
+				fmt.Fprintf(streams.ErrOut, arg)
+				//if !strings.HasPrefix(arg, "http://") && !strings.HasPrefix(arg, "https://") {
+				//	return fmt.Errorf("unknown argument: %s", arg) // this will fall back to sub-commands
+				//}
 			}
 			return nil
 		},
